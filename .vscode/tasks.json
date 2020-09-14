@@ -101,7 +101,7 @@
                     "PX4_SIM_SPEED_FACTOR": "1"
                 }
             },
-            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/iris.world",
+            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/empty.world",
             "isBackground": true,
             "presentation": {
                 "echo": true,
@@ -141,7 +141,7 @@
                     "PX4_SIM_SPEED_FACTOR": "1"
                 }
             },
-            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/plane.world",
+            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/empty.world",
             "isBackground": true,
             "presentation": {
                 "echo": true,
@@ -181,7 +181,7 @@
                     "PX4_SIM_SPEED_FACTOR": "1"
                 }
             },
-            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/standard_vtol.world",
+            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/empty.world",
             "isBackground": true,
             "presentation": {
                 "echo": true,
@@ -221,7 +221,7 @@
                     "PX4_SIM_SPEED_FACTOR": "1"
                 }
             },
-            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/tailsitter.world",
+            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/empty.world",
             "isBackground": true,
             "presentation": {
                 "echo": true,
@@ -261,7 +261,7 @@
                     "PX4_SIM_SPEED_FACTOR": "1"
                 }
             },
-            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/tiltrotor.world",
+            "command": "gzserver --verbose ${workspaceRoot}/Tools/sitl_gazebo/worlds/empty.world",
             "isBackground": true,
             "presentation": {
                 "echo": true,
@@ -333,6 +333,36 @@
             "label": "gazebo kill",
             "type": "shell",
             "command": "killall gzserver",
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": [],
+            "dependsOn":["px4_sitl_cleanup"]
+        },
+        {
+            "label": "px4_sitl_cleanup",
+            "type": "shell",
+            "command": "rm -rf /tmp/px4*",
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": [],
+            "dependsOn":["px4_kill"]
+        },
+        {
+            "label": "px4_kill",
+            "type": "shell",
+            "command": "killall px4 || true",
             "presentation": {
                 "echo": false,
                 "reveal": "never",

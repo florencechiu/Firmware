@@ -223,6 +223,20 @@ if (px4_constrained_flash_build)
 endif()
 
 # Generate uORB headers
+
+execute_process(
+	COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/px_generate_uorb_topic_files.py
+		--headers
+		-f ${msg_files}
+		-i ${CMAKE_CURRENT_SOURCE_DIR}
+		-o ${msg_out_path}
+		-e templates/uorb
+		-t ${CMAKE_CURRENT_BINARY_DIR}/tmp/headers
+		-q
+		${added_arguments}
+	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
 add_custom_command(OUTPUT ${uorb_headers}
 	COMMAND ${PYTHON_EXECUTABLE} tools/px_generate_uorb_topic_files.py
 		--headers
